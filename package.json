@@ -1,14 +1,19 @@
 {
   "name": "yyeva-workspace",
   "scripts": {
-    "dev": "pnpm --parallel --filter=yyeva --filter=offical dev",
-    "build": "pnpm --parallel --filter=yyeva --filter=offical build",
-    "start": "pnpm --filter=offical start",
-    "lint": "biome check . --fix"
+    "dev": "lerna run dev --parallel",
+    "build": "lerna run build",
+    "lint": "biome check . --fix",
+    "version": "lerna run build",
+    "bump": "lerna version --conventional-commits --yes",
+    "bump:dryrun": "lerna version --conventional-commits --no-push --no-git-tag-version",
+    "publish": "lerna publish from-git --yes",
+    "release": "lerna version --conventional-commits --yes && lerna publish from-git --yes"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@empjs/biome-config": "^0.7.2",
+    "lerna": "^9.0.5",
     "typescript": "^5.4.5"
   }
 }
