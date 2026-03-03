@@ -30,7 +30,8 @@
     "isolatedModules": false
   },
   "include": [
-    "src"
+    "src",
+    "tsdown.config.ts"
   ],
   "exclude": [
     "node_modules"
