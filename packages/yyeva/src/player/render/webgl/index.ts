@@ -38,9 +38,10 @@ export default class WglRender {
       // 重置program， 等恢复上下文后再重新初始化
       this.program = undefined
     })
-    this.ofs.addEventListener('webglcontextrestored', () => {
+    this.ofs.addEventListener('webglcontextrestored', async () => {
       logger.debug('[webglcontextrestored]')
       this.initGlContext()
+      await this.prepareShader()
       this.initWebgl()
     })
 
@@ -52,10 +53,10 @@ export default class WglRender {
   }
   public async setup(video?: HTMLVideoElement) {
     if (!video) throw new Error('video must support!')
-    await this.prepareShader()
-    // MCache.videoDurationTime = video.duration
+    // 先加载 video 实体和缓存，拿到 effect 数量后再生成 shader
     await this.renderCache.setup()
     await this.videoEntity.setup()
+    await this.prepareShader()
     this.video = video
     //
     this.resizeCanvasToDisplaySize()
@@ -64,14 +65,16 @@ export default class WglRender {
     // this.video.duration 媒体的持续时间(总长度)，以秒为单位
   }
   private async prepareShader() {
+    const effect = this.videoEntity.config?.effect
+    const effectCount = effect ? Object.keys(effect).length : 0
     if (this.version === 2) {
       const {VERTEX_SHADER, FRAGMENT_SHADER} = await import('./webgl-2')
       this.VERTEX_SHADER = VERTEX_SHADER()
-      this.FRAGMENT_SHADER = FRAGMENT_SHADER(this.gl, this.PER_SIZE)
+      this.FRAGMENT_SHADER = FRAGMENT_SHADER(this.gl, this.PER_SIZE, effectCount)
     } else if (this.version === 1) {
       const {VERTEX_SHADER, FRAGMENT_SHADER} = await import('./webgl-1')
       this.VERTEX_SHADER = VERTEX_SHADER()
-      this.FRAGMENT_SHADER = FRAGMENT_SHADER(this.gl, this.PER_SIZE)
+      this.FRAGMENT_SHADER = FRAGMENT_SHADER(this.gl, this.PER_SIZE, effectCount)
     }
   }
   private resizeCanvasToDisplaySize() {
@@ -334,6 +337,8 @@ export default class WglRender {
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
       const info = gl.getProgramInfoLog(program)
       logger.error(info)
+      gl.deleteProgram(program)
+      return null
     }
     gl.useProgram(program)
     return program
@@ -345,6 +350,8 @@ export default class WglRender {
     gl.compileShader(shader)
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
       logger.error(gl.getShaderInfoLog(shader))
+      gl.deleteShader(shader)
+      return null
     }
     return shader
   }

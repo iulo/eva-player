@@ -25,9 +25,9 @@ export const VERTEX_SHADER = () => {
     `
 }
 
-export const FRAGMENT_SHADER = (gl: WebGLRenderingContext | WebGL2RenderingContext, PER_SIZE = 9) => {
+export const FRAGMENT_SHADER = (gl: WebGLRenderingContext | WebGL2RenderingContext, PER_SIZE = 9, effectCount = 0) => {
   //片断着色器没有默认精度，所以我们需要设置一个精度
-  const textureSize = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS) - 1
+  const textureSize = Math.min(effectCount, gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS) - 1)
   // const textureSize =0
   let sourceTexure = ''
   let sourceUniform = ''

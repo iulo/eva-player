@@ -3,4 +3,5 @@ node_modules
 dist
 types
 .DS_Store
-
+local_ai
+GEMINI.md
