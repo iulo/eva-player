@@ -1,5 +1,6 @@
 {
   "name": "yyeva-workspace",
+  "private": true,
   "scripts": {
     "dev": "lerna run dev --parallel",
     "build": "lerna run build",
@@ -7,7 +8,6 @@
     "version": "lerna run build",
     "bump": "lerna version --conventional-commits --yes",
     "bump:dryrun": "lerna version --conventional-commits --no-push --no-git-tag-version",
-    "publish": "lerna publish from-git --yes",
     "release": "lerna version --conventional-commits --yes && lerna publish from-git --yes"
   },
   "devDependencies": {
