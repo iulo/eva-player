@@ -1,4 +1,4 @@
-# YY-EVA <sup>web</sup> 🎁
+# eva-player
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -10,15 +10,15 @@ Language: [English](./README.en.md)
 
 ## 📦安装
 ```shell
-npm i yyeva
+npm i eva-player
 # or
-yarn add yyeva
+yarn add eva-player
 # or
-pnpm add yyeva
+pnpm add eva-player
 ```
 ## 💿使用
 ```typescript
-import {yyEva,YYEvaType} from 'yyeva'
+import {yyEva,YYEvaType} from 'eva-player'
 let player:YYEvaType = await yyEva({
 	container,// Html Element
 	videoUrl,// Video Url
@@ -42,32 +42,32 @@ player.stop() // pause player
 player.destroy() // destroy player
 ```
 ## 配置
-| 选项            | 作用     | 默认值    |必填|
-|---------------|--------|--------|--------|
-|videoUrl|mp4地址||*|
-|hevcUrl|mp4地址 [hevc、h265]|不支持h265会降级到h264||
-|loop|是否循环、循环次数 |true||
-|videoID|适配微信等需要预先声明的容器,否则需要重复点击授权|||
-|mode|显示方式 横竖屏|根据父容器等比缩放||
-|container|html对象 推荐 div||*|
-|fps|礼物播放动画帧数|根据素材获取||
-|usePrefetch|是否边播边下载、带Key素材默认开启|true||
-|useBitmap|利用bitmap代替 img element|true||
-|useAccurate|启用 requestVideoFrameCallback,自降级|false|，开启后在个别安卓手机可能出现卡顿现象|
-|useVideoDBCache|indexdb 缓存视频|true||
-|useFrameCache|缓存视频帧|5||
-|useOfsRender|利用多canvas渲染|true||
-|mute|静音播放、根据环境自动调整|true||
-|alphaDirection|非带Key视频，适配alpha 位置|`alphaDirection`||
-|renderType|渲染模式、canvas2d 带Key模式开发中|`canvas2d`||
-|resizeCanvas|canvas 显示方式, 'percent' -- 铺满, 'percentW'- 横向铺满, 'percentH' - 垂直铺满, 'size'- 不缩放|`width 100%` `height 100%`||
-|logLevel|日志级别|`info`||
-|showPlayerInfo|是否控制台显示播放状态|||
-|effects|根据素材传入相应的素材内容|||
-|effects.fontColor|定义传入素材的字体颜色|||
-|effects.fontSize|定义传入素材的字体大小|||
-|checkTimeout|检查播放超时|`fasle`||
-|onRequestClickPlay|微信 或者 `mute=false` 会触发这个事件，不定义则显示默认样式|[类型](https://github.com/yylive/YYEVA-Web/blob/main/packages/yyeva/src/type/mix.ts#L173) [参考 clickPlayBtn](https://github.com/yylive/YYEVA-Web/blob/main/packages/yyeva/src/helper/polyfill.ts#L39)||
+| 选项               | 作用                                                                                            | 默认值                                                                                                                                                                                                 | 必填                                   |
+| ------------------ | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| videoUrl           | mp4地址                                                                                         |                                                                                                                                                                                                        | *                                      |
+| hevcUrl            | mp4地址 [hevc、h265]                                                                            | 不支持h265会降级到h264                                                                                                                                                                                 |                                        |
+| loop               | 是否循环、循环次数                                                                              | true                                                                                                                                                                                                   |                                        |
+| videoID            | 适配微信等需要预先声明的容器,否则需要重复点击授权                                               |                                                                                                                                                                                                        |                                        |
+| mode               | 显示方式 横竖屏                                                                                 | 根据父容器等比缩放                                                                                                                                                                                     |                                        |
+| container          | html对象 推荐 div                                                                               |                                                                                                                                                                                                        | *                                      |
+| fps                | 礼物播放动画帧数                                                                                | 根据素材获取                                                                                                                                                                                           |                                        |
+| usePrefetch        | 是否边播边下载、带Key素材默认开启                                                               | true                                                                                                                                                                                                   |                                        |
+| useBitmap          | 利用bitmap代替 img element                                                                      | true                                                                                                                                                                                                   |                                        |
+| useAccurate        | 启用 requestVideoFrameCallback,自降级                                                           | false                                                                                                                                                                                                  | ，开启后在个别安卓手机可能出现卡顿现象 |
+| useVideoDBCache    | indexdb 缓存视频                                                                                | true                                                                                                                                                                                                   |                                        |
+| useFrameCache      | 缓存视频帧                                                                                      | 5                                                                                                                                                                                                      |                                        |
+| useOfsRender       | 利用多canvas渲染                                                                                | true                                                                                                                                                                                                   |                                        |
+| mute               | 静音播放、根据环境自动调整                                                                      | true                                                                                                                                                                                                   |                                        |
+| alphaDirection     | 非带Key视频，适配alpha 位置                                                                     | `alphaDirection`                                                                                                                                                                                       |                                        |
+| renderType         | 渲染模式、canvas2d 带Key模式开发中                                                              | `canvas2d`                                                                                                                                                                                             |                                        |
+| resizeCanvas       | canvas 显示方式, 'percent' -- 铺满, 'percentW'- 横向铺满, 'percentH' - 垂直铺满, 'size'- 不缩放 | `width 100%` `height 100%`                                                                                                                                                                             |                                        |
+| logLevel           | 日志级别                                                                                        | `info`                                                                                                                                                                                                 |                                        |
+| showPlayerInfo     | 是否控制台显示播放状态                                                                          |                                                                                                                                                                                                        |                                        |
+| effects            | 根据素材传入相应的素材内容                                                                      |                                                                                                                                                                                                        |                                        |
+| effects.fontColor  | 定义传入素材的字体颜色                                                                          |                                                                                                                                                                                                        |                                        |
+| effects.fontSize   | 定义传入素材的字体大小                                                                          |                                                                                                                                                                                                        |                                        |
+| checkTimeout       | 检查播放超时                                                                                    | `false`                                                                                                                                                                                                |                                        |
+| onRequestClickPlay | 微信 或者 `mute=false` 会触发这个事件，不定义则显示默认样式                                     | [类型](https://github.com/yylive/YYEVA-Web/blob/main/packages/yyeva/src/type/mix.ts#L173) [参考 clickPlayBtn](https://github.com/yylive/YYEVA-Web/blob/main/packages/yyeva/src/helper/polyfill.ts#L39) |                                        |
 
 ## 注意
 + 正式环境 确保 `logLevel` 为 `info` 避免内存泄露
@@ -118,13 +118,13 @@ wechatPolyfill.initVideoIDPosition(['yyeva_right_top_position', 'yyeva_full_scre
 
 <!-- Badged -->
 
-[npm-version-src]: https://img.shields.io/npm/v/yyeva?style=flat&colorA=18181B&colorB=F0DB4F
-[npm-version-href]: https://npmjs.com/package/yyeva
-[npm-downloads-src]: https://img.shields.io/npm/dm/yyeva?style=flat&colorA=18181B&colorB=F0DB4F
-[npm-downloads-href]: https://npmjs.com/package/yyeva
-[bundle-src]: https://img.shields.io/bundlephobia/minzip/yyeva?style=flat&colorA=18181B&colorB=F0DB4F
-[bundle-href]: https://bundlephobia.com/result?p=yyeva
-[license-src]: https://img.shields.io/github/license/yylive/YYEVA-Web.svg?style=flat&colorA=18181B&colorB=F0DB4F
-[license-href]: https://github.com/yylive/YYEVA-Web/blob/main/LICENSE
+[npm-version-src]: https://img.shields.io/npm/v/eva-player?style=flat&colorA=18181B&colorB=F0DB4F
+[npm-version-href]: https://npmjs.com/package/eva-player
+[npm-downloads-src]: https://img.shields.io/npm/dm/eva-player?style=flat&colorA=18181B&colorB=F0DB4F
+[npm-downloads-href]: https://npmjs.com/package/eva-player
+[bundle-src]: https://img.shields.io/bundlephobia/minzip/eva-player?style=flat&colorA=18181B&colorB=F0DB4F
+[bundle-href]: https://bundlephobia.com/result?p=eva-player
+[license-src]: https://img.shields.io/github/license/iulo/eva-player.svg?style=flat&colorA=18181B&colorB=F0DB4F
+[license-href]: https://github.com/iulo/eva-player/blob/main/LICENSE
 [github-src]: https://img.shields.io/badge/github-YYEVA-blue?style=flat&colorA=18181B&colorB=F0DB4F
-[github-href]: https://github.com/yylive/YYEVA-Web
+[github-href]: https://github.com/iulo/eva-player
