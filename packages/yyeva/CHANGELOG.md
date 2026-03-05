@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/iulo/eva-player/compare/eva-player@2.1.0...eva-player@2.1.1) (2026-03-05)
+
+
+### Bug Fixes
+
+* docs and package.json refs ([0259040](https://github.com/iulo/eva-player/commit/025904097b207528d1d79dcea8e9461818fc54ac))
+
+
+
+
+
 # 2.1.0 (2026-03-03)
 
 
