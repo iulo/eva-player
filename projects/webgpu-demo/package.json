@@ -20,6 +20,6 @@
     "webpack-wgsl-loader": "^1.0.2"
   },
   "dependencies": {
-    "yyeva": "workspace:*"
+    "eva-player": "workspace:*"
   }
 }

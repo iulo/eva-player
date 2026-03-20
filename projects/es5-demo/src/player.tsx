@@ -1,5 +1,5 @@
 import {useEffect, useRef} from 'react'
-import {type YYEvaOptionsType, type YYEvaType, yyEva} from 'yyeva'
+import {type YYEvaOptionsType, type YYEvaType, yyEva} from 'eva-player'
 
 export const host = `${location.protocol}//${location.host}`
 export type PlayerI = {

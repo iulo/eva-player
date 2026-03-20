@@ -2,8 +2,9 @@
   "name": "yyeva-workspace",
   "private": true,
   "scripts": {
-    "dev": "lerna run dev --parallel",
-    "build": "lerna run build",
+    "dev": "pnpm --parallel --filter=eva-player --filter=offical dev",
+    "start": "pnpm --filter=offical start",
+    "build": "lerna run build --filter=eva-player",
     "lint": "biome check . --fix",
     "version": "lerna run build",
     "bump": "lerna version --conventional-commits --yes",

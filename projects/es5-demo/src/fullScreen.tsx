@@ -1,5 +1,5 @@
 import {useEffect, useRef} from 'react'
-import type {YYEvaOptionsType} from 'yyeva'
+import type {YYEvaOptionsType} from 'eva-player'
 import {Player} from './player'
 // const urls = ['https://yyeva.yy.com/yy/music.mp4', 'https://yyeva.yy.com/yy/mface.mp4']
 const opts: any = [

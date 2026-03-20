@@ -8,7 +8,7 @@ const genCode = (o?: any) => {
   // console.log(o)
   const oString = JSON.stringify(o, null, 10)
   return `
-import {yyEva, YYEvaType} from 'yyeva'
+import {yyEva, YYEvaType} from 'eva-player'
 const App = ()=> {
     const div = useRef<HTMLDivElement>(null)
     useEffect(() => {

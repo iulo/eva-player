@@ -1,6 +1,6 @@
 packages:
   - packages/**
-  - '!projects/**'
+  - projects/**
   - docs/**
   - '!**/test/**'
 

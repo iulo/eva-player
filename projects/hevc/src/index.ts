@@ -13,7 +13,7 @@ const root = document.getElementById('root')!
 // })
 // video.play()
 
-import yyEva from 'yyeva'
+import yyEva from 'eva-player'
 
 yyEva({
   container: root,

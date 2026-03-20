@@ -1,6 +1,6 @@
 import {useEffect, useRef} from 'react'
 import UploadVideo from 'src/preview/player/UploadVideo'
-import {type YYEvaOptionsType, type YYEvaType, yyEva} from 'yyeva'
+import {type YYEvaOptionsType, type YYEvaType, yyEva} from 'eva-player'
 import {
   useBackgroundGrid,
   useEffectStore,

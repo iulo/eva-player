@@ -10,7 +10,7 @@ import {ProForm, type ProFormInstance, ProFormText} from '@ant-design/pro-compon
 import {Divider, Table, Tooltip, message} from 'antd'
 import {Fragment, useEffect, useRef} from 'react'
 import {useEffectStore, usePlayerInfoStore, useVideoFormStore, useVideoStore} from 'src/preview/store/usePlayerStore'
-import type {YYEvaOptionsType} from 'yyeva'
+import type {YYEvaOptionsType} from 'eva-player'
 const fileToDataUrl = (file: HTMLInputElement): Promise<string | undefined> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()

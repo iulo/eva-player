@@ -1,5 +1,5 @@
 import {useEffect, useRef} from 'react'
-import {type YYEvaType, yyEva} from 'yyeva'
+import {type YYEvaType, yyEva} from 'eva-player'
 let player: YYEvaType
 const Jcx = () => {
   const div: any = useRef<HTMLDivElement>(null)

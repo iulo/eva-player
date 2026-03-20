@@ -1,5 +1,5 @@
 import {Suspense, lazy} from 'react'
-import {wechatPolyfill} from 'yyeva'
+import {wechatPolyfill} from 'eva-player'
 wechatPolyfill.initVideoIDPosition(['yyeva_right_top_position', 'yyeva_full_screen_position'])
 const Contaner = lazy(() => import('./Container'))
 const App = () => {

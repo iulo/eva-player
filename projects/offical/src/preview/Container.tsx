@@ -13,7 +13,7 @@ import {
   useEffectStore,
   useVideoStore,
 } from 'src/preview/store/usePlayerStore'
-import {version} from 'yyeva'
+import {version} from 'eva-player'
 // import {Row, Col, Space} from 'antd'
 import {GiftPlayer} from './player'
 import CodePreview from './player/CodePreview'
