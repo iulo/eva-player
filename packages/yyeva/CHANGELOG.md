@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/iulo/eva-player/compare/eva-player@2.1.1...eva-player@2.2.0) (2026-03-30)
+
+
+### Bug Fixes
+
+* 缓存中配置信息缺失导致的渲染引擎配置失效 ([142214a](https://github.com/iulo/eva-player/commit/142214aaa34ed0811090a0db83cd5888f5f57ec2))
+
+
+### Features
+
+* 增加seek能力，stop支持跳回第一帧 ([6781ed7](https://github.com/iulo/eva-player/commit/6781ed7452cd96374259be69f898cdeca651b7fa))
+
+
+
+
+
 ## [2.1.1](https://github.com/iulo/eva-player/compare/eva-player@2.1.0...eva-player@2.1.1) (2026-03-05)
 
 
