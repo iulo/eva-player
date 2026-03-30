@@ -663,7 +663,13 @@ export default class EVideo {
       const d = await db.model().find(this.op.videoSource)
       if (d) {
         const {blob, data} = d
-        if (data) this.renderer.videoEntity.setConfig(data)
+        if (this.op.useMetaData) {
+          if (!data) {
+            logger.debug('[checkVideoCache] cache miss: requires metadata but cache has none')
+            return undefined // 丢弃失效旧缓存并重新请求
+          }
+          this.renderer.videoEntity.setConfig(data)
+        }
         logger.debug('[checkVideoCache]')
         this.blobUrl = this.createObjectURL(blob)
         return this.blobUrl

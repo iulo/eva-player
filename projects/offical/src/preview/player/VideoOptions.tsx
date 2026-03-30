@@ -172,15 +172,15 @@ const VideoOptionsForm = () => {
         // initialValue={options.useMetaData}
         name="useMetaData"
         label={
-          <Tooltip title="支持内嵌自定义内容、只需要 alphaDirection 的可关闭提升性能">
-            带Key <QuestionCircleOutlined />
+          <Tooltip title="从视频中自动解析动画属性及动态元素配置（VAP 兼容模式），开启后无需额外加载 JSON 描述文件">
+            内嵌配置 <QuestionCircleOutlined />
           </Tooltip>
         }
       />
       <ProFormRadio.Group
         name="alphaDirection"
         label={
-          <Tooltip title="视频Alpha素材，默认为右边，带Key素材不需要设置,useMetaData 为 false 生效">
+          <Tooltip title="视频Alpha素材位置，默认为右边。若开启“内嵌配置”，则自动识别无需手动设置。">
             alpha位置 <QuestionCircleOutlined />
           </Tooltip>
         }
