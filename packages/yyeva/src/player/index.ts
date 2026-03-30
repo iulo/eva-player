@@ -151,7 +151,7 @@ export default class EVideo {
       // logger.debug('hasAudio', hasAudio, 'mute', this.op.mute)
 
       this.video.muted = this.op.mute
-      
+
       this.fps = this.renderer.videoEntity.fps
       logger.debug(`[YYEVA] this.renderer.videoEntity.fps`, this.renderer.videoEntity.fps)
       this.animator.setVideoFps({
@@ -304,57 +304,64 @@ export default class EVideo {
       logger.debug(`startEvent() document.hidden..`)
       return
     }
-   const tryPlay = (isMuted = false) => {
-        if (isMuted) {
-            this.video.muted = true
-        }
-        
-        const videoPromise = this.video.play()
-        if (videoPromise) {
-            videoPromise
-                .then(() => {
-                    logger.debug(`${this.video.muted ? '静音播放' : '声音播放'}`)
+    const tryPlay = (isMuted = false) => {
+      if (isMuted) {
+        this.video.muted = true
+      }
+
+      const videoPromise = this.video.play()
+      if (videoPromise) {
+        videoPromise
+          .then(() => {
+            logger.debug(`${this.video.muted ? '静音播放' : '声音播放'}`)
+          })
+          .catch(e => {
+            if (isMuted) {
+              // 已经尝试过静音播放仍然失败
+              logger.error(
+                `play error: `,
+                this.op.videoSource,
+                e,
+                'e?.code=',
+                e?.code,
+                ', e?.name=',
+                e?.name,
+                ', url=',
+                this.op.videoUrl,
+              )
+              if (e?.code === 20) {
+                return
+              }
+              this.clickToPlay()
+              if (e?.code === 0 && e?.name === EPlayError.NotAllowedError) {
+                this.op?.onError?.({
+                  playError: EPlayError.NotAllowedError,
+                  video: this.video,
+                  playStep: EPlayStep.muted,
                 })
-                .catch(e => {
-                    if (isMuted) {
-                        // 已经尝试过静音播放仍然失败
-                       logger.error(
-                          `play error: `,
-                          this.op.videoSource,
-                          e,
-                          'e?.code=',
-                          e?.code,
-                          ', e?.name=',
-                          e?.name,
-                          ', url=',
-                          this.op.videoUrl,
-                        )
-                        if (e?.code === 20) {
-                          return
-                        }
-                        this.clickToPlay()
-                        if (e?.code === 0 && e?.name === EPlayError.NotAllowedError) {
-                          this.op?.onError?.({
-                              playError: EPlayError.NotAllowedError,
-                              video: this.video,
-                              playStep: EPlayStep.muted,
-                          })
-                        }
-                        return
-                    }
-                    
-                    // 第一次播放失败，尝试静音播放
-                    logger.warn('尝试切换到静音播放', this.op.videoSource)
-                    tryPlay(true)
-                })
-        } else {
-            this.op?.onEnd?.()
-        }
+              }
+              return
+            }
+
+            // 第一次播放失败，尝试静音播放
+            logger.warn('尝试切换到静音播放', this.op.videoSource)
+            tryPlay(true)
+          })
+      } else {
+        this.op?.onEnd?.()
+      }
     }
-   
+
     tryPlay(this.op.mute)
   }
-  public stop() {
+  public seek(time: number) {
+    if (!this.renderer) return this.isDestroyed()
+    if (this.video.readyState >= 1) {
+      this.video.currentTime = time
+    }
+  }
+
+  public stop(resetToStart = false) {
     logger.debug('[player]stop.')
     if (!this.renderer) return this.isDestroyed()
     if (this.renderer.isPlay === false) return
@@ -362,6 +369,9 @@ export default class EVideo {
     this.animator.stop()
     this.video.pause()
     this.cleanTimer()
+    if (resetToStart) {
+      this.seek(0)
+    }
   }
   private videoEvent = (e: any, ...args) => {
     logger.debug(`[${e.type}]:`)
